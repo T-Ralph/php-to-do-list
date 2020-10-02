@@ -1,4 +1,9 @@
 <?php
+    //Set Up Class AutoLoading
+    spl_autoload_register(function ($class) {
+        include_once dirname(__FILE__) . '/includes/' . $class . '.Class.php';
+    });
+
     //Include HTML HEAD
     include_once dirname(__FILE__) . '/templates/head.php';
 ?>
@@ -6,11 +11,21 @@
         <h1>To-Do App</h1>
         <section>
             <h2>Add To-Do</h2>
-            <form>
+            <form method="POST" action="">
                 <label for="todo">New To-Do</label>
                 <input type="text" name="todo" id="todo" placeholder="New To-Do" required>
                 <input type="submit" value="Add To-Do">
+                <label for="debugging">Enable Debugging
+                    <input type="checkbox" name="debugging" id="debugging" value="true" />
+                </label>
             </form>
+            <?php
+                //If Form is Submitted and $_POST["todo"] is not Empty
+                if (isset($_POST) && !empty($_POST["todo"])):
+                    $add_todo = new ToDo($_POST["todo"]); //Initiate new ToDo Class
+                    $add_todo->RenderResponse(); //Render Response
+                endif;
+            ?>
         </section>
         <section>
             <h2>Active To-Do(s)</h2>
@@ -24,11 +39,19 @@
             <ul>
             </ul>
         </section>
-        <section>
-            <h2>Debugging To-Do(s)</h2>
-            <ul>
-            </ul>
-        </section>
+        <?php if (isset($_POST) && isset($_POST["debugging"])) : ?>
+            <section>
+                <h2>Debugging To-Do(s)</h2>
+                <b>To-Do</b>
+                <pre>
+                    <?php var_dump($_POST["todo"]); ?>
+                </pre>
+                <b>SESSION</b>
+                <pre>
+                    <?php var_dump($_SESSION["todos_array"]); ?>
+                </pre>
+            </section>
+        <?php endif; ?>
     </main>
 <?php
     //Include END
