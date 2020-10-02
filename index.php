@@ -13,11 +13,6 @@
             </form>
         </section>
         <section>
-            <h2>Debugging To-Do(s)</h2>
-            <ul>
-            </ul>
-        </section>
-        <section>
             <h2>Active To-Do(s)</h2>
             <form>
                 <ul>
@@ -26,6 +21,11 @@
         </section>
         <section>
             <h2>Completed To-Do(s)</h2>
+            <ul>
+            </ul>
+        </section>
+        <section>
+            <h2>Debugging To-Do(s)</h2>
             <ul>
             </ul>
         </section>
