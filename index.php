@@ -14,16 +14,26 @@
             <form method="POST" action="">
                 <label for="todo">New To-Do</label>
                 <input type="text" name="todo" id="todo" placeholder="New To-Do" required>
-                <input type="submit" value="Add To-Do">
+                <input type="submit" name="add" value="Add To-Do">
                 <label for="debugging">Enable Debugging
                     <input type="checkbox" name="debugging" id="debugging" value="true" />
                 </label>
             </form>
             <?php
-                //If Form is Submitted and $_POST["todo"] is not Empty
+                //If To-Do Form is Submitted and $_POST["todo"] is not Empty
                 if (isset($_POST) && !empty($_POST["todo"])):
                     $add_todo = new ToDo($_POST["todo"]); //Initiate new ToDo Class
                     $add_todo->RenderResponse(); //Render Response
+                endif;
+            ?>
+            <form method="POST" action="">
+                <input type="submit" name="clear" value="Clear All To-Do">
+            </form>
+            <?php
+                //If Clear Form is Submitted and $_POST["clear"] is not Empty
+                if (isset($_POST) && !empty($_POST["clear"])):
+                    $clear_todo = new Session(""); //Initiate new Session Class
+                    $clear_todo->ClearTodos(); //Run the ClearTodos() Method
                 endif;
             ?>
         </section>

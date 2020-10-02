@@ -36,7 +36,14 @@
         }
 
         public function AllTodos() {
+            //Return All Todo Array in $this->todos_array
             return $this->todos_array;
+        }
+
+        public function ClearTodos() {
+            //Clear $this->todos_array and $_SESSION
+            unset($this->todos_array);
+            session_destroy();
         }
     }
 ?>
