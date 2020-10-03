@@ -65,10 +65,19 @@
         </section>
         <section>
             <h2>Completed To-Do(s)</h2>
+            <?php
+                //If To-Do Form is Submitted and $_POST["delete"] is not Empty
+                if (isset($_POST) && !empty($_POST["delete"]) && $_POST["type"] == "completed") :
+                    $delete_active_todo = new Session(); //Initiate new Session Class
+                    $delete_active_todo->DeleteCompletedTodo($_POST["todo_id"]); //Delete Active Todo by todo_id
+                endif;
+            ?>
             <ul>
+                <?php $all_completed_todos = new ToDo(); //Initiate new Session Class ?>
+                <?php $all_completed_todos->RenderCompletedTodos(); ?>
             </ul>
         </section>
-        <?php if (isset($_POST["debugging"])) : //If $_POST["debugging"] is not Empty ?>
+        <?php if ((isset($_POST["debugging"]) && $_POST["debugging"] == "true") || (isset($_GET["debugging"]) && $_GET["debugging"] == "true")) : //If $_POST["debugging"] is not Empty ?>
             <section>
                 <h2>Debugging To-Do(s)</h2>
                 <b>To-Do</b>

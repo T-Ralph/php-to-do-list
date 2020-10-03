@@ -78,7 +78,7 @@ form > input[type=submit] {
     padding: 15px 15px;
     cursor: pointer;
 }
-button {
+button, li > form > input[type=submit] {
     background-color: #8D021F;
     color: #FFFFFF;
     margin: 0px;

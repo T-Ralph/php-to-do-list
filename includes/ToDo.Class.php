@@ -64,5 +64,22 @@
                 <?php
             }
         }
+
+        public function RenderCompletedTodos() {
+            $completed_todos = $this->store_todo->AllCompletedTodos(); //Get All Completed Todos
+            $completed_todos_reversed = array_reverse($completed_todos); //Reverse Array for Ease of Reading
+            foreach ($completed_todos_reversed as $completed_todo) {
+                ?>
+                    <li>
+                        <?php echo $completed_todo; //Print Out Todo in Li List ?>
+                        <form method="POST" action="">
+                            <input type="hidden" name="todo_id" value="<?php echo array_search($completed_todo, $completed_todos); //Position of Todo in Array ?>" />
+                            <input type="hidden" name="type" value="completed" />
+                            <input type="submit" name="delete" value="Delete" />
+                        </form>
+                    </li>
+                <?php
+            }
+        }
     }
 ?>
