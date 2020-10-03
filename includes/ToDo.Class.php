@@ -44,11 +44,23 @@
         }
 
         public function RenderActiveTodos() {
-            $active_todos = $this->store_todo->AllActiveTodos();
-            $active_todos = array_reverse($active_todos);
-            foreach ($active_todos as $active_todo) {
+            $active_todos = $this->store_todo->AllActiveTodos(); //Get All Active Todos
+            $active_todos_reversed = array_reverse($active_todos); //Reverse Array for Ease of Reading
+            foreach ($active_todos_reversed as $active_todo) {
                 ?>
-                    <li><?php echo $active_todo; ?></li>
+                    <li>
+                        <?php echo $active_todo; //Print Out Todo in Li List ?>
+                        <form method="POST" action="">
+                            <input type="hidden" name="todo_id" value="<?php echo array_search($active_todo, $active_todos); //Position of Todo in Array ?>" />
+                            <input type="hidden" name="type" value="active" />
+                            <input type="submit" name="delete" value="Delete" />
+                        </form>
+                        <form method="POST" action="">
+                            <input type="hidden" name="todo_id" value="<?php echo array_search($active_todo, $active_todos); //Position of Todo in Array ?>" />
+                            <input type="hidden" name="type" value="complete" />
+                            <input type="submit" name="complete" value="Complete" />
+                        </form>
+                    </li>
                 <?php
             }
         }

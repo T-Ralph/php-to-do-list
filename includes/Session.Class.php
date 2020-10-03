@@ -53,5 +53,13 @@
             unset($_SESSION["todos_array"]["active"]);
             session_destroy();
         }
+
+        public function DeleteActiveTodo($todo_id) {
+            //Remove Todo from Array
+            array_splice($this->todos_array["active"], $todo_id, 1);
+
+            //Save Array to $_SESSION
+            $this->SaveActiveTodo();
+        }
     }
 ?>
