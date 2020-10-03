@@ -107,18 +107,17 @@ main {
     grid-template-areas:
         "h1-title"
         "section-1"
+        "section-4"
         "section-2"
-        "section-3"
-        "section-4";
+        "section-3";
 }
 @media screen and ( min-width: 650px ) {
     main {
         grid-template-columns: 50% 50%;
         grid-template-areas:
             "h1-title h1-title"
-            "section-1 section-1"
-            "section-2 section-3"
-            "section-4 .";
+            "section-1 section-4"
+            "section-2 section-3";
     }
 }
 @media screen and ( min-width: 1200px ) {
