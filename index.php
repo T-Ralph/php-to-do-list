@@ -15,7 +15,7 @@
                 <label for="todo">New To-Do</label>
                 <input type="text" name="todo" id="todo" placeholder="New To-Do" required>
                 <input type="submit" name="add" value="Add To-Do">
-                <label for="debugging">Enable Debugging
+                <label>Enable Debugging
                     <input type="checkbox" name="debugging" id="debugging" value="true" />
                 </label>
             </form>
@@ -26,13 +26,17 @@
                     $add_todo->RenderResponse(); //Render Response
                 endif;
             ?>
+            <h2>Clear To-Do</h2>
             <form method="POST" action="">
                 <input type="submit" name="clear" value="Clear All To-Do">
+                <label>Enable Debugging
+                    <input type="checkbox" name="debugging" id="debugging" value="true" />
+                </label>
             </form>
             <?php
                 //If Clear Form is Submitted and $_POST["clear"] is not Empty
                 if (isset($_POST) && !empty($_POST["clear"])):
-                    $clear_todo = new Session(""); //Initiate new Session Class
+                    $clear_todo = new Session(); //Initiate new Session Class
                     $clear_todo->ClearTodos(); //Run the ClearTodos() Method
                 endif;
             ?>
@@ -41,6 +45,8 @@
             <h2>Active To-Do(s)</h2>
             <form>
                 <ul>
+                    <?php $all_active_todos = new ToDo(); //Initiate new Session Class ?>
+                    <?php $all_active_todos->RenderActiveTodos(); ?>
                 </ul>
             </form>
         </section>
@@ -49,7 +55,7 @@
             <ul>
             </ul>
         </section>
-        <?php if (isset($_POST) && isset($_POST["debugging"])) : ?>
+        <?php if (isset($_POST["debugging"])) : //If $_POST["debugging"] is not Empty ?>
             <section>
                 <h2>Debugging To-Do(s)</h2>
                 <b>To-Do</b>

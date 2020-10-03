@@ -2,7 +2,7 @@
     //Creating ToDo Class
     Class ToDo {
         //Declare Constructor
-        public function __construct($todo) {
+        public function __construct($todo = "") {
             //Assign Todo
             $this->todo = $todo;
 
@@ -18,7 +18,7 @@
 
         public function Status() {
             //Check If Todo is Saved in $_SESSION via Session Class
-            return (in_array($this->todo, $this->store_todo->AllTodos()));
+            return (in_array($this->todo, $this->store_todo->AllActiveTodos()));
         }
 
         public function Response() {
@@ -41,6 +41,16 @@
                     <?php echo $this->Response(); //Echo Status Response Message ?>
                 </h3>
             <?php
+        }
+
+        public function RenderActiveTodos() {
+            $active_todos = $this->store_todo->AllActiveTodos();
+            $active_todos = array_reverse($active_todos);
+            foreach ($active_todos as $active_todo) {
+                ?>
+                    <li><?php echo $active_todo; ?></li>
+                <?php
+            }
         }
     }
 ?>
