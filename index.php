@@ -38,8 +38,8 @@
             <br /><br /><br />
             <h2>Debugging To-Do</h2>
             <button>
-                <a href="?debugging=<?php echo ($_GET["debugging"] == "true") ? "false" : "true"; ?>">
-                    <?php echo ($_GET["debugging"] == "true") ? "Disable" : "Enable" ?> Debugging
+                <a href="?debugging=<?php echo (isset($_GET["debugging"]) && ($_GET["debugging"] == "true")) ? "false" : "true"; ?>">
+                    <?php echo (isset($_GET["debugging"]) && ($_GET["debugging"] == "true")) ? "Disable" : "Enable" ?> Debugging
                 </a>
             </button>
         </section>
@@ -83,11 +83,11 @@
                 <h2>Debugging To-Do(s)</h2>
                 <b>To-Do</b>
                 <pre>
-                    <?php var_dump($_POST["todo"]); ?>
+                    <?php var_dump(isset($_POST["todo"]) ? $_POST["todo"] : NULL); ?>
                 </pre>
                 <b>SESSION</b>
                 <pre>
-                    <?php var_dump($_SESSION["todos_array"]); ?>
+                    <?php var_dump(isset($_SESSION["todos_array"]) ? $_SESSION["todos_array"] : NULL); ?>
                 </pre>
             </section>
         <?php endif; ?>
