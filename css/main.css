@@ -87,6 +87,10 @@ button, li > form > input[type=submit] {
     cursor: pointer;
     display: block;
 }
+button a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
 li {
     margin: 20px;
 }

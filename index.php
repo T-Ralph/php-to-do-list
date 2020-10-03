@@ -15,9 +15,6 @@
                 <label for="todo">New To-Do</label>
                 <input type="text" name="todo" id="todo" placeholder="New To-Do" required>
                 <input type="submit" name="add" value="Add To-Do">
-                <label>Enable Debugging
-                    <input type="checkbox" name="debugging" id="debugging" value="true" />
-                </label>
             </form>
             <?php
                 //If To-Do Form is Submitted and $_POST["todo"] is not Empty
@@ -37,10 +34,14 @@
             ?>
             <form method="POST" action="">
                 <input type="submit" name="clear" value="Clear All To-Do">
-                <label>Enable Debugging
-                    <input type="checkbox" name="debugging" id="debugging" value="true" />
-                </label>
             </form>
+            <br /><br /><br />
+            <h2>Debugging To-Do</h2>
+            <button>
+                <a href="?debugging=<?php echo ($_GET["debugging"] == "true") ? "false" : "true"; ?>">
+                    <?php echo ($_GET["debugging"] == "true") ? "Disable" : "Enable" ?> Debugging
+                </a>
+            </button>
         </section>
         <section>
             <h2>Active To-Do(s)</h2>
@@ -77,7 +78,7 @@
                 <?php $all_completed_todos->RenderCompletedTodos(); ?>
             </ul>
         </section>
-        <?php if ((isset($_POST["debugging"]) && $_POST["debugging"] == "true") || (isset($_GET["debugging"]) && $_GET["debugging"] == "true")) : //If $_POST["debugging"] is not Empty ?>
+        <?php if (isset($_GET["debugging"]) && $_GET["debugging"] == "true") : //If $_GET["debugging"] is True ?>
             <section>
                 <h2>Debugging To-Do(s)</h2>
                 <b>To-Do</b>
